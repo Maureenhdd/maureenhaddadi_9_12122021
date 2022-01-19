@@ -5,6 +5,7 @@ import LoadingPage from "./LoadingPage.js"
 import Actions from './Actions.js'
 
 const row = (bill) => {
+
   return (`
     <tr>
       <td>${bill.type}</td>
@@ -17,14 +18,14 @@ const row = (bill) => {
       </td>
     </tr>
     `)
-  }
+}
 
 const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {
-  
+
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -47,7 +48,10 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
-  
+
+  bills.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}
