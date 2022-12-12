@@ -23,8 +23,10 @@ export default class {
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
+
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} /></div>`)
     $('#modaleFile').modal('show')
+
   }
   // order bills most recently
   sortByDate = (bills) => {
@@ -32,6 +34,7 @@ export default class {
   }
 
   // not need to cover this function by tests
+  /* istanbul ignore next */
   getBills = () => {
     if (this.store) {
       return this.store
@@ -59,11 +62,7 @@ export default class {
                 }
               }
             })
-          console.log('length', bills.length)
-          // this.sortByDate(bills)
-          console.log(bills[0].date)
-          console.log(new Date(bills[6].date))
-          console.log(bills)
+
           return bills
         })
     }

@@ -28,7 +28,9 @@ export default class Login {
       .catch(
         (err) => this.createUser(user)
       )
+
       .then(() => {
+
         this.onNavigate(ROUTES_PATH['Bills'])
         this.PREVIOUS_LOCATION = ROUTES_PATH['Bills']
         PREVIOUS_LOCATION = this.PREVIOUS_LOCATION

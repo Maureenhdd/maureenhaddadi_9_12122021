@@ -25,7 +25,7 @@ const rows = (data) => {
 }
 
 export default ({ data: bills, loading, error }) => {
-
+  console.log({ bills } + "toto")
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -42,7 +42,7 @@ export default ({ data: bills, loading, error }) => {
       </div>
     </div>
   `)
-
+  console.log(loading)
   if (loading) {
     return LoadingPage()
   } else if (error) {
@@ -50,6 +50,7 @@ export default ({ data: bills, loading, error }) => {
   }
 
   bills.sort((a, b) => new Date(b.date) - new Date(a.date))
+
 
 
   return (`

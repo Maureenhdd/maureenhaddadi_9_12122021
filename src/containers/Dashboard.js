@@ -74,6 +74,7 @@ export default class {
     $('#arrow-icon2').click((e) => this.handleShowTickets(e, bills, 2))
     $('#arrow-icon3').click((e) => this.handleShowTickets(e, bills, 3))
     this.getBillsAllUsers()
+    this.prepareOnClickHandlers(bills)
     new Logout({ localStorage, onNavigate })
   }
 
@@ -146,14 +147,14 @@ export default class {
       this.counter++
 
     }
-
-    bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-    })
-
-
     return bills
 
+  }
+
+  prepareOnClickHandlers(bills) {
+    bills.forEach(bill => {
+      $(document).on("click", `#open-bill${bill.id}`, (e) => this.handleEditTicket(e, bill, bills))
+    })
   }
 
   // not need to cover this function by tests

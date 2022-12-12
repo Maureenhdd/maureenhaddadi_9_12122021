@@ -75,7 +75,7 @@ describe("Given that I am a user on login page", () => {
 
       // we have to mock navigation to test it
       const onNavigate = (pathname) => {
-        document.body.innerHTML = ROUTES({ pathname });
+        document.body.innerHTML = ROUTES({ data: [], pathname });
       };
 
       let PREVIOUS_LOCATION = "";
@@ -90,11 +90,14 @@ describe("Given that I am a user on login page", () => {
         store,
       });
 
+
       const handleSubmit = jest.fn(login.handleSubmitEmployee);
       login.login = jest.fn().mockResolvedValue({});
       form.addEventListener("submit", handleSubmit);
+
       fireEvent.submit(form);
       expect(handleSubmit).toHaveBeenCalled();
+
       expect(window.localStorage.setItem).toHaveBeenCalled();
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         "user",
